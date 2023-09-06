@@ -92,7 +92,7 @@ var datnongnghiep2 = L.geoJson(nongthuysanconlai,{style:nongthuysanStyle,
     layer.bindPopup(feature.properties.refname)
 }}).addTo(map);
 
-var nongthuysan = L.layerGroup([datnongnghiep1,datnongnghiep2]).addTo(map);
+var datnongnghiep = L.layerGroup([datnongnghiep1,datnongnghiep2]).addTo(map);
 
 
 
