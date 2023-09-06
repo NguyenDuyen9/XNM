@@ -62,20 +62,42 @@ var RanhmanStyle = {
 
 //add geojson 
 
+
+//RANH MAN
 var ranhman = L.geoJson(ranhmanhcm,{style:RanhmanStyle, 
     onEachFeature:function (feature, layer) {
     layer.bindPopup(feature.properties.description)
 }}).addTo(map);
 
 
-var datnongnghiep = L.geoJson(nongthuysan,{style:nongthuysanStyle,
+//DAT NONG NGHIEP
+//var datnongnghiep = L.geoJson(nongthuysan,{style:nongthuysanStyle,
+    //onEachFeature:function (feature, layer) {
+
+    //layer.bindPopup(feature.properties.refname)
+//}}).addTo(map);
+
+
+//CHIA NONG THUY SAN-DO FILE NANG
+
+var datnongnghiep1 = L.geoJson(nongthuysanCLNNTS,{style:nongthuysanStyle,
     onEachFeature:function (feature, layer) {
 
     layer.bindPopup(feature.properties.refname)
 }}).addTo(map);
 
+var datnongnghiep2 = L.geoJson(nongthuysanconlai,{style:nongthuysanStyle,
+    onEachFeature:function (feature, layer) {
+
+    layer.bindPopup(feature.properties.refname)
+}}).addTo(map);
+
+var nongthuysan = L.layerGroup([datnongnghiep1,datnongnghiep2]).addTo(map);
 
 
+
+
+//RANH GIOI
 var ranhgioi = L.geoJson(ranhgioihcm, {style:RanhgioiStyle,
 onEachFeature:function (feature, layer) {
     
@@ -96,7 +118,7 @@ onEachFeature:function (feature, layer) {
 }}).addTo(map);
 
 
-
+//TRAM DO
 var tramdo = L.geoJson(tramdoman,{pointToLayer:function(feature, latlng){
     return L.circleMarker(latlng,tramdoStyle);
 },onEachFeature:function (feature, layer) {
@@ -109,16 +131,12 @@ var tramdo = L.geoJson(tramdoman,{pointToLayer:function(feature, latlng){
 // ADDING WMS LAYER
 
 //Adding nongthuysan
-var nongnghiep = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
+var nongthuysan = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
     layers: 'XNM_HCM:nongthuysan',
     format: 'image/png',
     transparent: true,
    attribution: ""
  }).addTo(map);
-
-
-
-
 
 
 
@@ -132,12 +150,12 @@ var ranhmanwms = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
 
 
 //Adding ranhgioiman-raster
-//var ranhmanraster = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
-  // layers: 'XNM_HCM:ManHCM_decimal',
-  // format: 'image/png',
-  //transparent: true,
-  //attribution: ""
-//}).addTo(map);
+var ranhmanraster = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
+  layers: 'XNM_HCM:ManHCM_decimal',
+  format: 'image/png',
+  transparent: true,
+  attribution: ""
+}).addTo(map);
 
 
 //Adding ranhgioihanhchinh
@@ -162,17 +180,15 @@ var ranhmanwms = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
 
 
 //layergroup
-var nongthuysangroup = L.layerGroup([nongnghiep,datnongnghiep]).addTo(map);
+var nongthuysangroup = L.layerGroup([nongthuysan,datnongnghiep]).addTo(map);
 
 var Ranhmangroup = L.layerGroup([ranhmanwms,ranhman]).addTo(map);
 
 
 
-
-
 //  Layers
 var overlays = {
-    //"Ranh mặn vùng":ranhmanraster,
+    "Ranh mặn vùng":ranhmanraster,
     "Nông thủy sản":nongthuysangroup,
     "Ranh giới hành chính":ranhgioi,
     "Vị trí trạm đo": tramdo,
