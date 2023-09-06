@@ -28,7 +28,7 @@
   <div class="row">
     <div id="filter_div" class="col-md-3">
       <br/>
-      <label>Soil Type</label>
+      <label>Type</label>
       <select id="refname" onchange="refreshService()">
         <option value="">Select Type</option>
         <option value="LUK">LUK</option>
@@ -42,7 +42,7 @@
       </select>
 
       <hr/>
-    <h4>Legend</h4>
+    <h4>Chú thích</h4>
     <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:nongthuysan"/>
     </div>
     <div id="map_div" class="col-md-9"></div>
@@ -68,22 +68,24 @@
 <script type="text/javascript" src="data/ranhgioihcm.js"></script>
 <script type="text/javascript" src="data/tramdoman.js"></script>
 
-
+<script type="text/javascript" src="data/nongthuysan_CLN_NTS.js"></script>
+<script type="text/javascript" src="data/nongthuysan_conlai.js"></script>
 
 <script type="text/javascript" src="js/map.js"></script>
 
 
 
-<script type="text/javascript">
-  function refreshService(){
-    var refname_type=$('refname#').val();
-    
 
+<script type="text/javascript">
+  function refreshService() {
+    var refname_type=$('#refname').val();
     var soils_parameters="refname:"+refname_type;
-   nongthuysan.setParams({
-    viewparams : soils_parameters,
-   });
+   nongthuysangroup.setParams({
+    viewparams: soils_parameters,
     
+   });
+
+   
   }
 </script>
 
