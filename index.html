@@ -14,41 +14,41 @@
 
 
 
-  </head>
-<body>
-<div id="map">
-  <div id="coordinate"></div>
-</div>
-</body>
-
 
 
 </head>
-<body>
-  <div class="row">
-    <div id="filter_div" class="col-md-3">
-      <br/>
-      <label>Type</label>
-      <select id="refname" onchange="refreshService()">
-        <option value="">Select Type</option>
-        <option value="LUK">LUK</option>
-        <option value="LUN">LUN</option>
-        <option value="BHK">BHK</option>
-        <option value="CLN">CLN</option>
-        <option value="HNK">HNK</option>
-        <option value="NKH">NKH</option>
-        <option value="NTS">NTS</option>
+<body> 
 
-      </select>
+<div 
+class ="container">
+<button type="button" onclick="toggleLegend();"><h4><img src=data/legend.png></h4></button> 
+    <div class="fillter">
+      <div class="heading"> 
+           <i class="fa-solid fa-xmark"></i>
+            <h2>Chú thích</h2>
+        </div>
+        <div class="legend">
+            <h4>Loại đất</h4>
+            <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:nongthuysan">
+            <h4>Ranh mặn</h4>
+            <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:ranhmanhcm">
+            <h4>Lan truyền mặn</h4>
+            <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:ManHCM_decimal">
+            <h4><img src=data/image.png>Trạm đo mặn</h4>
 
-      <hr/>
-    <h4>Chú thích</h4>
-    <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:nongthuysan"/>
+            
+        </div>
+     <i class="fa-solid fa-bars"></i>  
+     
     </div>
-    <div id="map_div" class="col-md-9"></div>
-    </div>
-</body>
 
+
+<div id="map">
+    
+    <div id="coordinate"></div>
+ 
+</div>
+</div>
 
 
  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
