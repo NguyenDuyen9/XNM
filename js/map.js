@@ -45,18 +45,36 @@ var RanhgioiStyle = {
     opacity: 0.3,
     weight:1,
 };
-var tramdoStyle = {
-    radius:8,
-    fillColor: "green",
-    color: "green",
-    weight:1,
-};
+
+//STYLE TRAM DO
+
+//var tramdoStyle = {
+   // radius:8,
+    //fillColor: "green",
+    //color: "green",
+    //weight:1,
+    var tramdoStyle = L.icon({
+    iconUrl: 'data/image.png',
+    //shadowUrl: 'image.png',
+
+    iconSize:     [20, 20], // size of the icon
+   // shadowSize:   [50, 64], // size of the shadow
+   iconAnchor:   [22, 60], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+    
+    
+
 var nongthuysanStyle = {
-    color: "horror", 
+    color: "horror",
 };
 
 var RanhmanStyle = { 
-    color: "blue",
+    color: "pink",
+   opacity: 0.1,
+    weight:5,
+   
 };
 
 
@@ -80,21 +98,40 @@ var ranhman = L.geoJson(ranhmanhcm,{style:RanhmanStyle,
 
 //CHIA NONG THUY SAN-DO FILE NANG
 
+//nhóm 1
+
 var datnongnghiep1 = L.geoJson(nongthuysanCLNNTS,{style:nongthuysanStyle,
     onEachFeature:function (feature, layer) {
 
-    layer.bindPopup(feature.properties.refname)
+
+area=(turf.area(feature)/1000000).toFixed(2)
+label=`Tên đất:${feature.properties.descriptio}<br>`
+label+=`Loại đất:${feature.properties.refname}<br>`
+        label+=`Diện tích:${area}<br>`
+
+layer.bindPopup(label)
+
+
+    //layer.bindPopup(feature.properties.refname)
 }}).addTo(map);
+
+//nhóm 2
 
 var datnongnghiep2 = L.geoJson(nongthuysanconlai,{style:nongthuysanStyle,
     onEachFeature:function (feature, layer) {
+area=(turf.area(feature)/1000000).toFixed(2)
+label=`Tên đất:${feature.properties.descriptio}<br>`
+label+=`Loại đất:${feature.properties.refname}<br>`
+        label+=`Diện tích:${area}<br>`
 
-    layer.bindPopup(feature.properties.refname)
+layer.bindPopup(label)
+
+//layer.bindPopup(feature.properties.refname)
 }}).addTo(map);
 
+
+//nhóm 1 + nhóm 2
 var datnongnghiep = L.layerGroup([datnongnghiep1,datnongnghiep2]).addTo(map);
-
-
 
 
 //RANH GIOI
@@ -120,9 +157,12 @@ onEachFeature:function (feature, layer) {
 
 //TRAM DO
 var tramdo = L.geoJson(tramdoman,{pointToLayer:function(feature, latlng){
-    return L.circleMarker(latlng,tramdoStyle);
-},onEachFeature:function (feature, layer) {
+    return L.marker(latlng,{icon:tramdoStyle});
+    },onEachFeature:function (feature, layer) {
+    
+
     layer.bindPopup(feature.properties.tentram)
+
 }}).addTo(map);
 
 
@@ -225,6 +265,21 @@ map.on("mousemove",function(e) {
 })
 
 
+
+showLegend = true;  // default value showing the legend
+
+    var toggleLegend = function(){
+        if(showLegend === true){
+        /* use jquery to select your DOM elements that has the class 'legend' */
+           $('.fillter').hide(); 
+           showLegend = false; 
+        }else{
+           $('.fillter').show();
+           showLegend = true; 
+        }
+        }
+        
+    
 
 
 //  Adding scale to map
