@@ -13,24 +13,34 @@
 
 
 
-</head>	
+
+
+
+</head>
 <body> 
+
 <div 
 class ="container">
 <button type="button" onclick="toggleLegend();"><h4><img src=data/legend.png></h4></button> 
     <div class="fillter">
       <div class="heading"> 
+
+           
             <h2>Chú thích</h2>
         </div>
         <div class="legend">
             <h4>Loại đất</h4>
-            <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:nongthuysan">
+            <img src=data/Legend_NTS.png>
             <h4>Ranh mặn</h4>
-            <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:ranhmanhcm">
+            <img src=data/Legend_RM.png>
             <h4>Lan truyền mặn</h4>
-            <img src="http://localhost:8081/geoserver/XNM_HCM/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=XNM_HCM:ManHCM_decimal">
-            <h4><img src=data/image.png>Trạm đo mặn</h4>   
+            <img src=data/Legend_Ra.png>
+            <h4><img src=data/image.png>Trạm đo mặn</h4>
+
+            
         </div>
+    
+     
     </div>
 
 
@@ -55,6 +65,7 @@ class ="container">
 
 
 <script type="text/javascript" src="data/ranhmanhcm.js"></script>
+<script type="text/javascript" src="data/nongthuysan.js"></script>
 <script type="text/javascript" src="data/ranhgioihcm.js"></script>
 <script type="text/javascript" src="data/tramdoman.js"></script>
 
