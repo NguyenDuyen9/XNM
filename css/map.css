@@ -1,6 +1,7 @@
  * button{
-   width: 35px;
-   height:35px;
+   width: 30px;
+   height:30px;
+   background: white;
 
 }
 *{
@@ -128,7 +129,7 @@
    left: 40%;
    background: #fff;
    z-index: 99999;
-    bottom: 0;
+    bottom: 90;
     padding: 3px;
 }
 
