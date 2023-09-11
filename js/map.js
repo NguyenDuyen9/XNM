@@ -171,31 +171,53 @@ var tramdo = L.geoJson(tramdoman,{pointToLayer:function(feature, latlng){
 // ADDING WMS LAYER
 
 //Adding nongthuysan
-var nongthuysan = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
-    layers: 'XNM_HCM:nongthuysan',
-    format: 'image/png',
-    transparent: true,
-   attribution: ""
- }).addTo(map);
+//var nongthuysan = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
+   // layers: 'XNM_HCM:nongthuysan',
+   // format: 'image/png',
+   // transparent: true,
+   //attribution: ""
+ //}).addTo(map);
 
+
+
+var NTS = 'data/XNM_HCM-NTS.png',
+NTSBounds = [[10.37309455871582, 106.3569107055664], [11.159788131713867, 106.97798919677734]];
+var nongthuysan =L.imageOverlay(NTS, NTSBounds).addTo(map);
 
 
 //Adding ranhgioiman
-var ranhmanwms = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
-    layers: 'XNM_HCM:ranhmanhcm',
-    format: 'image/png', 
-    transparent: true,
-    attribution: ""
-}).addTo(map);
+//var ranhmanwms = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
+   // layers: 'XNM_HCM:ranhmanhcm',
+    //format: 'image/png', 
+   // transparent: true,
+   // attribution: ""
+//}).addTo(map);
+
+
+
+
+
+var ranhmanwms = 'data/XNM_HCM.png',
+imageBounds = [[10.383437156677246, 106.00697326660156], [11.186771392822266, 107.0113296508789]];
+var RM =L.imageOverlay(ranhmanwms, imageBounds).addTo(map);
+
+
+
 
 
 //Adding ranhgioiman-raster
-var ranhmanraster = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
-  layers: 'XNM_HCM:ManHCM_decimal',
-  format: 'image/png',
-  transparent: true,
-  attribution: ""
-}).addTo(map);
+//var ranhmanraster = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms",{
+  //layers: 'XNM_HCM:ManHCM_decimal',
+  //format: 'image/png',
+  //transparent: true,
+  //attribution: ""
+//}).addTo(map);
+
+
+var raster = 'data/XNM_HCM-ManHCM_de.png',
+rasterBounds = [[10.358996992170356, 106.35309643067788], [11.167632731290253, 107.03739699679574]];
+var ranhmanraster =L.imageOverlay(raster, rasterBounds).addTo(map);
+
 
 
 //Adding ranhgioihanhchinh
@@ -222,7 +244,7 @@ var ranhmanraster = L.tileLayer.wms("http://localhost:8081/geoserver/XNM_HCM/wms
 //layergroup
 var nongthuysangroup = L.layerGroup([nongthuysan,datnongnghiep]).addTo(map);
 
-var Ranhmangroup = L.layerGroup([ranhmanwms,ranhman]).addTo(map);
+var Ranhmangroup = L.layerGroup([RM,ranhman]).addTo(map);
 
 
 
@@ -233,7 +255,7 @@ var overlays = {
     "Ranh giới hành chính":ranhgioi,
     "Vị trí trạm đo": tramdo,
     "Ranh mặn":Ranhmangroup,
-    //"Legend":legend,
+   
    };
 
 
