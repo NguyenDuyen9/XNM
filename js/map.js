@@ -289,9 +289,9 @@ var Ranhmangroup = L.layerGroup([RM,ranhman]).addTo(map);
 //  Layers
 var overlays = {
     "Ranh mặn vùng":ranhmanraster,
+"Ranh giới hành chính":ranhgioi,
     //"Nông thủy sản":nongthuysangroup,
     "Nông thủy sản":datnongnghiep,
-    "Ranh giới hành chính":ranhgioi,
     "Vị trí trạm đo": tramdo,
     "Ranh mặn":Ranhmangroup,
    
