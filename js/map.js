@@ -66,9 +66,9 @@ var RanhgioiStyle = {
     
     
 
-var nongthuysanStyle = {
-    color: "horror",
-};
+//var nongthuysanStyle = {
+  //  color: "horror",
+//};
 
 var RanhmanStyle = { 
     color: "pink",
@@ -100,38 +100,85 @@ var ranhman = L.geoJson(ranhmanhcm,{style:RanhmanStyle,
 
 //nhóm 1
 
-var datnongnghiep1 = L.geoJson(nongthuysanCLNNTS,{style:nongthuysanStyle,
-    onEachFeature:function (feature, layer) {
-
-
-area=(turf.area(feature)/1000000).toFixed(2)
-label=`Tên đất:${feature.properties.descriptio}<br>`
-label+=`Loại đất:${feature.properties.refname}<br>`
-        label+=`Diện tích:${area}<br>`
-
-layer.bindPopup(label)
-
-
-    //layer.bindPopup(feature.properties.refname)
-}}).addTo(map);
-
-//nhóm 2
-
-var datnongnghiep2 = L.geoJson(nongthuysanconlai,{style:nongthuysanStyle,
+var datnongnghiep1=L.geoJSON(nongthuysanCLNNTS, {
+    style: function(feature) {
+        switch (feature.properties.refname) {
+             case 'CLN': return {color: "blue"};
+            case 'NTS':   return {color: "red"};      
+            }},
+       
     onEachFeature:function (feature, layer) {
 area=(turf.area(feature)/1000000).toFixed(2)
 label=`Tên đất:${feature.properties.descriptio}<br>`
 label+=`Loại đất:${feature.properties.refname}<br>`
-        label+=`Diện tích:${area}<br>`
+label+=`Diện tích:${area}<br>`
 
 layer.bindPopup(label)
+ 
+}
+    
+}).addTo(map);
 
-//layer.bindPopup(feature.properties.refname)
-}}).addTo(map);
+
+var datnongnghiep2=L.geoJSON(nongthuysanconlai, {
+    style: function(feature) {
+        switch (feature.properties.refname) {
+        case 'LUC':return {color:"green"};
+          case 'LUK':return {color:"lightgreen"};
+           case 'LUN':return {color:"yellow"};
+           case 'BHK':return {color:"black"};
+           case 'HNK':return {color:"skyblue"};
+          case 'NKH':return {color:"orange"};
+                
+            }},
+       
+    onEachFeature:function (feature, layer) {
+area=(turf.area(feature)/1000000).toFixed(2)
+label=`Tên đất:${feature.properties.descriptio}<br>`
+label+=`Loại đất:${feature.properties.refname}<br>`
+label+=`Diện tích:${area}<br>`
+
+layer.bindPopup(label)
+ 
+}
+    
+}).addTo(map);
 
 
 //nhóm 1 + nhóm 2
 var datnongnghiep = L.layerGroup([datnongnghiep1,datnongnghiep2]).addTo(map);
+
+
+//var datnongnghiep1 = L.geoJson(nongthuysanCLNNTS,{style:nongthuysanStyle,
+    //onEachFeature:function (feature, layer) {
+//area=(turf.area(feature)/1000000).toFixed(2)
+//label=`Tên đất:${feature.properties.descriptio}<br>`
+//label+=`Loại đất:${feature.properties.refname}<br>`
+       // label+=`Diện tích:${area}<br>`
+
+//layer.bindPopup(label)
+
+
+    //layer.bindPopup(feature.properties.refname)
+//}}).addTo(map);
+
+//nhóm 2
+
+//var datnongnghiep2 = L.geoJson(nongthuysanconlai,{style:nongthuysanStyle,
+   // onEachFeature:function (feature, layer) {
+//area=(turf.area(feature)/1000000).toFixed(2)
+////label=`Tên đất:${feature.properties.descriptio}<br>`
+////label+=`Loại đất:${feature.properties.refname}<br>`
+        //label+=`Diện tích:${area}<br>`
+
+//layer.bindPopup(label)
+
+//layer.bindPopup(feature.properties.refname)
+//}}).addTo(map);
+
+
+//nhóm 1 + nhóm 2
+//var datnongnghiep = L.layerGroup([datnongnghiep1,datnongnghiep2]).addTo(map);
 
 
 //RANH GIOI
@@ -178,11 +225,11 @@ var tramdo = L.geoJson(tramdoman,{pointToLayer:function(feature, latlng){
    //attribution: ""
  //}).addTo(map);
 
+//var NTS = 'data/XNM_HCM-NTS.png',
+//NTSBounds = [[10.37309455871582, 106.3569107055664], [11.159788131713867, 106.97798919677734]];
+//var nongthuysan =L.imageOverlay(NTS, NTSBounds).addTo(map);
 
 
-var NTS = 'data/XNM_HCM-NTS.png',
-NTSBounds = [[10.37309455871582, 106.3569107055664], [11.159788131713867, 106.97798919677734]];
-var nongthuysan =L.imageOverlay(NTS, NTSBounds).addTo(map);
 
 
 //Adding ranhgioiman
@@ -193,15 +240,9 @@ var nongthuysan =L.imageOverlay(NTS, NTSBounds).addTo(map);
    // attribution: ""
 //}).addTo(map);
 
-
-
-
-
 var ranhmanwms = 'data/XNM_HCM.png',
 imageBounds = [[10.383437156677246, 106.00697326660156], [11.186771392822266, 107.0113296508789]];
 var RM =L.imageOverlay(ranhmanwms, imageBounds).addTo(map);
-
-
 
 
 
@@ -212,7 +253,6 @@ var RM =L.imageOverlay(ranhmanwms, imageBounds).addTo(map);
   //transparent: true,
   //attribution: ""
 //}).addTo(map);
-
 
 var raster = 'data/XNM_HCM-ManHCM_de.png',
 rasterBounds = [[10.358996992170356, 106.35309643067788], [11.167632731290253, 107.03739699679574]];
@@ -239,10 +279,8 @@ var ranhmanraster =L.imageOverlay(raster, rasterBounds).addTo(map);
 
 
 
-
-
 //layergroup
-var nongthuysangroup = L.layerGroup([nongthuysan,datnongnghiep]).addTo(map);
+//var nongthuysangroup = L.layerGroup([nongthuysan,datnongnghiep]).addTo(map);
 
 var Ranhmangroup = L.layerGroup([RM,ranhman]).addTo(map);
 
@@ -251,7 +289,8 @@ var Ranhmangroup = L.layerGroup([RM,ranhman]).addTo(map);
 //  Layers
 var overlays = {
     "Ranh mặn vùng":ranhmanraster,
-    "Nông thủy sản":nongthuysangroup,
+    //"Nông thủy sản":nongthuysangroup,
+    "Nông thủy sản":datnongnghiep,
     "Ranh giới hành chính":ranhgioi,
     "Vị trí trạm đo": tramdo,
     "Ranh mặn":Ranhmangroup,
