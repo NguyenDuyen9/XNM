@@ -291,7 +291,7 @@ var overlays = {
     "Salinity boundary":ranhmanraster,
 "Administrative boundaries":ranhgioi,
     //"Nông thủy sản":nongthuysangroup,
-    "Soil typen":datnongnghiep,
+    "Soil type":datnongnghiep,
     "Station location": tramdo,
     "Salinity contour":Ranhmangroup,
    
